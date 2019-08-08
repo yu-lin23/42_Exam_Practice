@@ -6,7 +6,7 @@
 /*   By: yu-lin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:42:06 by yu-lin            #+#    #+#             */
-/*   Updated: 2019/08/07 21:57:11 by yu-lin           ###   ########.fr       */
+/*   Updated: 2019/08/08 07:59:07 by yu-lin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,18 @@ void str_capitalizer(char *str)
     i = 0;
     while (str[i])
     {
-        if (str[i] >= 'A' && str[i] <= 'Z')
+        if (i == 0)
+        {
+            if (str[0] >= 'a' && str[0] <= 'z')
+                str[0] -= 32;
+        }
+        else if (str[i - 1] == ' ' || str[i - 1] == '\t')
+        {
+            if (str[i] >= 'a' && str[i] <= 'z')
+                str[i] -= 32;
+        }
+        else if (str[i] >= 'A' && str[i] <= 'Z')
             str[i] += 32;
-        if (str[i - 1] == ' ' || str[i - 1] == '\t')
-            str[i] -= 32;
         i++;
     }
     write(1, str, i);
