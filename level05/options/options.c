@@ -6,7 +6,7 @@
 /*   By: yu-lin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 10:47:50 by yu-lin            #+#    #+#             */
-/*   Updated: 2019/08/28 13:10:24 by yu-lin           ###   ########.fr       */
+/*   Updated: 2019/08/28 15:24:14 by yu-lin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,19 @@ int     main(int ac, char **av)
                     write(1, "Invalid Option\n", 15);
                     return (0);
                 }
-                j++;
             }
             i++;
         }
-    }
-    i = 0;
-    while (i < 32)
-    {
-        bits[i] = 48 + bits[i];
-        write(1, &bits[i++], 1);
-        if (i == 32)
-            write(1, "\n", 1);
-        else if (i % 8 == 0)
-            write(1, " ", 1);
+        i = 0;
+        while (i < 32)
+        {
+            bits[i] = 48 + bits[i];
+            write(1, &bits[i++], 1);
+            if (i == 32)
+                write(1, "\n", 1);
+            else if (i % 8 == 0)
+                write(1, " ", 1);
+        }
     }
     return (0);
 }
