@@ -15,7 +15,7 @@ int bracket_cmp(char a, char b)
 int brackets(char *str)
 {
 	int stack[4096];
-	int i = -1;
+	int i = 0;
 
 	while (*str)
 	{
@@ -26,7 +26,7 @@ int brackets(char *str)
 				return (0);
 		str++;
 	}
-	return (1);
+	return (!i);
 }
 
 int main(int ac, char **av)
