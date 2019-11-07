@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   brackets.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/01 10:52:00 by exam              #+#    #+#             */
+/*   Updated: 2019/11/01 11:08:25 by exam             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
-int bracket_cmp(char a, char b)
+int		bracket_cmp(char a, char b)
 {
 	if (a == '(' && b == ')')
 		return (1);
@@ -12,24 +24,25 @@ int bracket_cmp(char a, char b)
 		return (0);
 }
 
-int brackets(char *str)
+int		brackets(char *str)
 {
+	int i;
 	int stack[4096];
-	int i = 0;
 
+	i = -1;
 	while (*str)
 	{
-		if (*str == '(' || *str == '[' || *str == '{')
+		if (*str == '('|| *str == '[' || *str == '{')
 			stack[++i] = *str;
-		else if (*str == ')' || *str == ']' || *str == '}')
+		else if (*str == ')'|| *str == ']' || *str == '}')
 			if (!bracket_cmp(stack[i--], *str))
 				return (0);
 		str++;
 	}
-	return (!i);
+	return (1);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int i;
 
@@ -39,10 +52,15 @@ int main(int ac, char **av)
 		write(1, "\n", 1);
 		return (0);
 	}
-	while (av[++i])
-		if (brackets(av[i]))
-			write(1, "OK\n", 3);
-		else
-			write(1, "Error\n", 6);
+	else
+	{
+		while (++i < ac)
+		{
+			if (brackets(av[i]))
+				write(1, "OK\n", 3);
+			else
+				write(1, "Error\n", 6);
+		}
+	}
 	return (0);
 }
